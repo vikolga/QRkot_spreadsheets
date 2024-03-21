@@ -15,7 +15,6 @@ INFO = {
     'project_id': settings.project_id,
     'private_key_id': settings.private_key_id,
     'private_key': settings.private_key,
-    # 'private_key': settings.private_key.replace('\\n', '\n'),
     'client_email': settings.client_email,
     'client_id': settings.client_id,
     'auth_uri': settings.auth_uri,

@@ -1,3 +1,4 @@
+from ast import Dict, List
 from aiogoogle import Aiogoogle
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -13,7 +14,7 @@ router = APIRouter()
 
 @router.post(
     '/',
-    response_model=list[dict[str, int]],
+    response_model=list[dict],
     dependencies=[Depends(current_superuser)],
 )
 async def get_report(
@@ -25,10 +26,7 @@ async def get_report(
     charity_projects = await charity_project_crud.get_projects_by_completion_rate(session)
     spreadsheetid = await spreadsheets_create(wrapper_services)
     await set_user_permissions(spreadsheetid, wrapper_services)
-    resp = await spreadsheets_update_value(spreadsheetid,
-                                           charity_projects,
-                                           wrapper_services)
-    print(resp)
+    await spreadsheets_update_value(spreadsheetid,
+                                    charity_projects,
+                                    wrapper_services)
     return charity_projects
-
-

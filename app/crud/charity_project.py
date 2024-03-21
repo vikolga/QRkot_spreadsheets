@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy import select, Boolean
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CRUDBase
@@ -33,7 +33,7 @@ class CRUDCharityProject(CRUDBase):
         )
         db_project = db_project.scalars().first()
         return db_project
-    
+
     async def get_projects_by_completion_rate(
             self,
             session: AsyncSession,
