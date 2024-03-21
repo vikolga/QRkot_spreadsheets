@@ -13,9 +13,7 @@ router = APIRouter()
 
 @router.post(
     '/',
-    # Тип возвращаемого эндпоинтом ответа
     response_model=list[dict[str, int]],
-    # Определяем зависимости
     dependencies=[Depends(current_superuser)],
 )
 async def get_report(

@@ -49,20 +49,19 @@ async def set_user_permissions(
 
 async def spreadsheets_update_value(
         spreadsheetid: str,
-        reservations: list,
+        charity_projects: list,
         wrapper_services: Aiogoogle
 ) -> None:
     now_date_time = datetime.now().strftime(FORMAT)
     service = await wrapper_services.discover('sheets', 'v4')
-    # Здесь формируется тело таблицы
     table_values = [
         ['Отчёт от', now_date_time],
-        ['Количество регистраций переговорок'],
-        ['ID переговорки', 'Кол-во бронирований']
+        ['Топ проектов по скорости закрытия'],
+        ['Название проекта', 'Время сбора', 'Описание']
     ]
     # Здесь в таблицу добавляются строчки
-    for res in reservations:
-        new_row = [str(res['meetingroom_id']), str(res['count'])]
+    for res in charity_projects:
+        new_row = [str(res['name']), str(res['time_project']), str(res['description'])]
         table_values.append(new_row)
 
     update_body = {

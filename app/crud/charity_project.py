@@ -37,19 +37,19 @@ class CRUDCharityProject(CRUDBase):
     async def get_projects_by_completion_rate(
             self,
             session: AsyncSession,
-    ) -> list[dict[str, int]]:
+    ) -> Optional[list[dict[str, str]]]:
         charity_project = await session.execute(
             select(CharityProject).where(
                 CharityProject.fully_invested))
         charity_projects = charity_project.scalars().all()
-        list_charuty_project = []
+        list_charity_project = []
         for project in charity_projects:
-            list_charuty_project.append({
+            list_charity_project.append({
                 'name': project.name,
                 'time_project': project.close_date - project.create_date,
-                'description': project.description
+                'description': project.description,
             })
-        return sorted(list_charuty_project, key=lambda i: (i['time_project']))
+        return sorted(list_charity_project, key=lambda i: (i['time_project']))
 
 
 charity_project_crud = CRUDCharityProject(CharityProject)
