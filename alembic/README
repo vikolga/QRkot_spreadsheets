@@ -1,0 +1,22 @@
+Базовые команды Alembic
+
+* Создание файла / репозитория 
+alembic init --template async alembic
+
+* Создание файла миграции базы данных 
+alembic revision --autogenerate -m "first add commit"
+
+* Сопоставление файла миграции с базой данных 
+alembic upgrade head
+
+* Отмена миграции 
+alembic downgrade base
+
+* Вывод всех миграций в хронологическом порядке 
+alembic history
+
+* Вывод подробной хронологии миграций
+alembic history -v
+
+* Просмотр последней примененной миграции
+alembic current
