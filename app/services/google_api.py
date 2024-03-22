@@ -5,7 +5,7 @@ from aiogoogle import Aiogoogle
 from app.core.config import settings
 
 # Константа с форматом строкового представления времени
-FORMAT = "%Y/%m/%d %H:%M:%S"
+FORMAT = '%Y/%m/%d %H:%M:%S'
 
 
 async def spreadsheets_create(wrapper_services: Aiogoogle) -> str:
